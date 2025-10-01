@@ -70,7 +70,14 @@ class BattleField():
 
     def update(self):
         self.nuke_dead()
+        
+        # Track occupied positions to prevent overlaps
+        occupied_positions = set()
+        
         for troop in self.troops:
+            # Store original position for collision resolution
+            original_position = troop.position
+            
             closest_enemy, distance = self.get_closest_enemy(troop)
             if not closest_enemy:
                 troop.target = None
@@ -101,6 +108,21 @@ class BattleField():
                     troop.target = None
                     troop.action = "idle"
                     troop.moveRandomly()
+            
+            # Check for position collision and resolve it
+            if troop.position in occupied_positions:
+                # Choose random axis to adjust (0 = x-axis, 1 = y-axis)
+                axis = random.choice([0, 1])
+                
+                if axis == 0:  # Adjust X towards original position
+                    adjustment = 1 if original_position[0] > troop.position[0] else -1
+                    troop.position = (troop.position[0] + adjustment, troop.position[1])
+                else:  # Adjust Y towards original position
+                    adjustment = 1 if original_position[1] > troop.position[1] else -1
+                    troop.position = (troop.position[0], troop.position[1] + adjustment)
+            
+            # Add current position to occupied set
+            occupied_positions.add(troop.position)
 
             if troop.cooldown_timer > 0:
                 troop.cooldown_timer -= 1
