@@ -184,7 +184,7 @@ class BattleField():
         
         with imageio.get_writer(video_path, fps=fps) as writer:
             for i in range(1, self.frame_counter):  # Start from 1 since frame_counter starts at 1
-                frame_path = os.path.join(frames_folder, f"{i:04d}.png")
+                frame_path = os.path.join(frames_folder, f"frame_{i:04d}.png")
                 if os.path.exists(frame_path):
                     # First and last frames stay longer, others stay for 0.5 seconds
                     frame_count = 5 if i == 1 or i == self.frame_counter - 1 else 1
