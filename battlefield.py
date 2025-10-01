@@ -1,7 +1,6 @@
 import random
 import os
 import datetime
-from PIL import Image, ImageDraw
 import imageio
 import xml.etree.ElementTree as ET
 from png_renderer import PNGRenderer
