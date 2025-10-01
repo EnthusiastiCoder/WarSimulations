@@ -1,10 +1,8 @@
-# WarSimulations 🏹⚔️
+# ⚔️ War Simulations 🏹
 
 A real-time tactical warfare simulation featuring autonomous troop combat with smooth animations and visual effects.
 
-## 🎯 Demo
-
-![Battle Animation](battle_animation.svg)
+![Battle Animation](assets/battle_animation.svg)
 
 *Live SVG animation showing troops engaging in tactical combat with smooth arrow transitions and collision avoidance*
 
